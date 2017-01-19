@@ -1,2 +1,4 @@
 docker 镜像加速命令：
 curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://7c90c11a.m.daocloud.io
+安装docker最新版
+curl -sSL https://get.docker.io | bash
