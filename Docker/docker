@@ -1,8 +1,3 @@
 docker 镜像加速命令：
 curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://7c90c11a.m.daocloud.io
 
-安装docker最新版命令：
-curl -sSL https://get.docker.io | bash
-之后需要把当前用户加入到docker组里：
-sudo usermod -aG docker {your-user}
-例如：sudo usermod -aG docker root
