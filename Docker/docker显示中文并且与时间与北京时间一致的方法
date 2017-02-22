@@ -1,0 +1,5 @@
+针对centos的docker源镜像，在Dockerfile中增加如下即可：
+ENV LANG="en_US.UTF-8"
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN     /bin/echo -e "ZONE="Asia/Shanghai"\nUTC=false\nRTC=false" > /etc/sysconfig/clock
