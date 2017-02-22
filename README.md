@@ -1,2 +1,2 @@
 # notes
-关于openstack和Docker的笔记
+关于openstack、Docker、kubernetes的笔记
