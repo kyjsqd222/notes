@@ -1,0 +1,6 @@
+在/etc/docker/目录下新建一个名为daemon.json的文件，写入如下内容：
+{
+ "hosts":["tcp://0.0.0.0:2375","unix:///var/run/docker.sock"]
+}
+systemctl daemon-reload
+sudo service docker restart
