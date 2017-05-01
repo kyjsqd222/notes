@@ -1,3 +1,4 @@
+参考：https://docs.docker.com/engine/installation/
 一、卸载旧版本的Docker：
 sudo yum remove docker docker-common container-selinux docker-selinux docker-engine -y
 二、安装yum-utils：
