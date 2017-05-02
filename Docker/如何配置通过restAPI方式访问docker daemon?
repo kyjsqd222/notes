@@ -4,3 +4,5 @@
 }
 systemctl daemon-reload
 sudo service docker restart
+
+配置其他参数类似，参数可参考官方文档提供的参数：https://docs.docker.com/edge/engine/reference/commandline/dockerd/#options
