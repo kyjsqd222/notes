@@ -1,0 +1,13 @@
+FROM sub-ubuntu:svn
+#EXPOSE 3306
+#RUN sudo apt-get clean all && sudo apt-get update && sudo apt-get install mysql-server -y && sudo apt-get install subversion -y
+#RUN service mysql start && mysqladmin -uroot password 'root'
+#RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf && sed -i "/# Here is entries for some specific programs/i\default-character-set=utf8" /etc/mysql/my.cnf && sed -i "/skip-external-locking/i\character-set-server=utf8" /etc/mysql/my.cnf && sed -i "/#no-auto-rehash/i\default-character-set=utf8" /etc/mysql/my.cnf
+RUN mkdir -p /var/mysqldata
+RUN service mysql start \
+    &&  mysql -uroot -proot -e"create database ticomm_v3r06;grant all on *.* to root@'%' identified by 'root';flush privileges;"
+ENTRYPOINT rm -rf /var/mysqldata/* \
+           && svn co https://192.168.1.168:8080/svn/Project/branches/ticomm2771_V3R06/conf/sql/sql /var/mysqldata --username xn.yang --password sdncloudtiger \
+           && service mysql restart && mysql -uroot -proot -e"use ticomm_v3r06;source /var/mysqldata/01_DDL.sql;source /var/mysqldata/02_INIT.sql;" \
+           && service mysql stop \
+           && mysqld_safe
