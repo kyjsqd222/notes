@@ -1,0 +1,45 @@
+1.网络规划：
+Ceph的网络分为public-nework，cluster-network，所以需要规划一下，如果成本允许，可以使用两块万兆。一块用来作为public-network，一块用来作为cluster-network。如果成本紧张，则可以使用一块万兆，这样public-network和cluster-network都使用同一块网卡
+
+2.ceph集群部署前的准备工作：
+  1）规范系统主机名；
+
+  2）添加hosts文件实现集群主机名与主机名之间相互能够解析（host 文件添加主机名不要使用fqdn方式）
+
+  3）每台 ssh-copy-id 完成这些服务器之间免ssh密码登录；
+
+  4）关闭防火墙或者开放 6789/6800~6900端口、关闭SELINUX；
+
+  5）配置ntp服务，开启时间服务，保证集群服务器时间统一；
+
+3.启动一个ceph mon进程（假设在node1上）
+sudo docker run -d --net=host --privileged=true -v /etc/ceph:/etc/ceph -v /var/lib/ceph:/var/lib/ceph -e MON_IP=192.168.1.21 -e CEPH_PUBLIC_NETWORK=192.168.1.0/24 192.168.2.42:5000/ceph/daemon mon
+
+4.在每个节点关闭防火墙服务（因为是试验环境，所以可以这样）
+systemctl stop firewalld.service
+systemctl disable firewalld.service
+setenforce 0
+
+5.拷贝以下文件到其他node:
+ssh root@node2 mkdir -p /var/lib/ceph
+scp -r /etc/ceph root@node2:/etc
+scp -r /var/lib/ceph/bootstrap* root@node2:/var/lib/ceph
+
+6.在每个节点上启动一个osd进程（这里把node1的sdb也作为一个osd运行）
+sudo docker run -d --net=host --privileged=true -v /etc/ceph:/etc/ceph -v /var/lib/ceph:/var/lib/ceph -v /dev:/dev -e OSD_DEVICE=/dev/sdb 192.168.2.42:5000/ceph/daemon osd_ceph_disk
+
+（另外，在测试环境中，也可以挂载一个文件夹作为OSD，如：
+mkdir -p /ceph/sdb
+sudo docker run -d --net=host -v /etc/ceph:/etc/ceph -v /var/lib/ceph:/var/lib/ceph -v /ceph/sdb:/var/lib/ceph/osd --privileged=true --restart=always 192.168.2.42:5000/ceph/daemon osd_directory
+）
+
+说明：
+docker --privieged 参数：
+使用该参数，container内的root拥有真正的root权限。
+否则，container内的root只是外部的一个普通用户权限。
+privileged启动的容器，可以看到很多host上的设备，并且可以执行mount。
+甚至允许你在docker容器中启动docker容器。
+
+参考文章：http://it.dataguru.cn/article-7806-1.html
+
+
