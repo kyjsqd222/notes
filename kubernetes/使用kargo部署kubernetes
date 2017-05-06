@@ -2,6 +2,7 @@
 2.准备几台物理机（或者虚拟机）用来部署k8s，假设为node1,node2,node3
 3.配置A到node1,node2....上的无密码访问（ssh-keygen）
 4.关闭node1,node2,node3....上的防火墙（最好配置一下软件源为国内源，比如阿里源）
+以下操作都在部署机上进行（即A上）
 5.clone kargo到本地：git clone https://github.com/kubernetes-incubator/kargo.git
 6.按照自己的实际情况修改k8s-cluster.yml（位置：kargo/inventory/group_vars/k8s-cluster.yml）
 7.生成配置文件（IP需要改成自己要部署集群的每个主机IP）
