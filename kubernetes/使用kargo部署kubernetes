@@ -1,4 +1,4 @@
-1.准备一台部署机（用来给其他机器部署k8s，其本身并不会加入到k8s集群），假设为A。并且在A上安装python3，ansible,Jinja2.
+1.准备一台部署机（用来给其他机器部署k8s，其本身并不会加入到k8s集群），假设为A。并且在A上安装python3，ansible,Jinja2(pip install --upgrade Jinja2).
 2.准备几台物理机（或者虚拟机）用来部署k8s，假设为node1,node2,node3
 3.配置A到node1,node2....上的无密码访问（ssh-keygen）
 4.关闭node1,node2,node3....上的防火墙（最好配置一下软件源为国内源，比如阿里源）
