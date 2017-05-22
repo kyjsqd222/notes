@@ -1,0 +1,4 @@
+1.在其他机器上创建文件夹：mkdir -p /etc/docker/certs.d/registry.com:5000
+2.将镜像仓库的公有证书copy到上述节点文件路径下：/etc/docker/certs.d/registry.com:5000/ca.crt
+3.更新上述节点的hosts文件,例如：192.168.2.42 registry.com
+4.然后就可以从上述节点pull私有仓库的镜像了：docker pull registry.com:5000/centos:latest
