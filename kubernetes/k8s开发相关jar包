@@ -13,3 +13,4 @@ json-20160810.jar
 zjsonpatch-0.3.0.jar
 
 以上jar包可到网站上搜索下载：https://mvnrepository.com/
+API调用可参考：https://github.com/fabric8io/kubernetes-client
