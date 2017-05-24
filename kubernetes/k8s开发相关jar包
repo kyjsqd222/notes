@@ -10,5 +10,6 @@ okhttp-3.6.0.jar
 okio-1.12.0.jar
 validation-api-1.1.0.Final.jar
 json-20160810.jar
+zjsonpatch-0.3.0.jar
 
 以上jar包可到网站上搜索下载：https://mvnrepository.com/
