@@ -1,0 +1,1 @@
+docker tag jiangxi/web:v2 registry.com:5000/jiangxi/web:v2 && docker push registry.com:5000/jiangxi/web:v2
