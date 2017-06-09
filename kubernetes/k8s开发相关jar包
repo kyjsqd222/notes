@@ -1,6 +1,6 @@
 jackson-annotations-2.8.7.jar
 jackson-core-2.8.8.jar
-jackson-databind-2.8.7.jar
+jackson-databind-2.8.8.jar
 jackson-dataformat-yaml-2.8.8.jar
 kubernetes-api-2.2.210.jar
 kubernetes-client-2.2.14.jar
