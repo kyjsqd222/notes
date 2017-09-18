@@ -1,0 +1,5 @@
+1.配置从远程访问docker daemon:
+在daemon.json中增加如下——
+{
+"hosts": ["tcp://0.0.0.0:2376","unix:///var/run/docker.sock"]
+}
